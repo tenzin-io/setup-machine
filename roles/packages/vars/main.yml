@@ -19,7 +19,6 @@ debian_packages:
   - less
   - tmux
   - vim
-  - libnss3-tools # for mkcert
 
 ubuntu_packages:
   - apt-transport-https
@@ -32,13 +31,6 @@ ubuntu_packages:
   - hwloc-nox # view hardware topology, no X
   - smartmontools # access disk reliability stats
   - apt-file # search for files in packages
-  - golang-1.16 # for golang coding
-  - rustc # for rust coding
-  - crash # for crash utility
-  - wireguard # for wireguard wg
-  - wireguard-tools-dbgsym # wireguard dbgsym
-  - bpftrace # for bpftrace
-  - bpftrace-dbgsym # for bpftrace debug
   - curl
   - gnupg
   - software-properties-common
@@ -46,6 +38,7 @@ ubuntu_packages:
   - ca-certificates
   - groff
   - less
+  - ubuntu-dbgsym-keyring
 
 centos_packages:
   - sysstat # system stats

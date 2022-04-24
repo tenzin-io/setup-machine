@@ -3,6 +3,24 @@
   package:
     name: '{{ package }}'
     state: present
-  loop: '{{ debian_packages }}'
+  loop:
+    - apt-transport-https
+    - sysstat # system stats
+    - tree # directory ascii layout
+    - figlet # ascii art fonts
+    - mosh # always on shell
+    - jq # json pretty format
+    - zip # zip files
+    - hwloc-nox # view hardware topology, no X
+    - smartmontools # access disk reliability stats
+    - apt-file # search for files in packages
+    - curl
+    - gnupg
+    - software-properties-common
+    - lsb-release
+    - ca-certificates
+    - less
+    - tmux
+    - vim
   loop_control:
     loop_var: package

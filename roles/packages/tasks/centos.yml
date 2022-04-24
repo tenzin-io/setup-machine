@@ -3,6 +3,17 @@
   package:
     name: '{{ package }}'
     state: present
-  loop: '{{ centos_packages }}'
+  loop:
+    - sysstat # system stats
+    - mosh # always on shell
+    - jq # json pretty format
+    - hwloc # view hardware topology, no X
+    - bash-completion
+    - python39 # python 3.9
+    - make # running Makefiles
+    - redhat-lsb-core
+    - tmux
+    - yum-utils
+    - less # for aws cli
   loop_control:
     loop_var: package
