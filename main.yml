@@ -6,7 +6,7 @@
   gather_facts: yes
 
   vars_files:
-    - vars.yaml
+    - vars.yml
 
   roles:
     - name: security
