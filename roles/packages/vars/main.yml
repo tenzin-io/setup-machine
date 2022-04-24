@@ -19,6 +19,7 @@ debian_packages:
   - less
   - tmux
   - vim
+  - libnss3-tools # for mkcert
 
 ubuntu_packages:
   - apt-transport-https
