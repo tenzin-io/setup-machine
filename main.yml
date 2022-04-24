@@ -10,5 +10,6 @@
 
   roles:
     - name: security
+    - name: repos
     - name: packages
     - name: preferences
