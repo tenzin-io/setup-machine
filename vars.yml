@@ -1,0 +1,8 @@
+---
+default_user: sysuser 
+ssh_public_key: ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAH6Zq6a3bli/LZgJeNVzB/lXPWUMBxh79uFoouwgOMM6FJQPeRf7l9pWgKWHbsx0l63DqT1rWxskVjcmIaqX77y/gFBuDpQtICgTdV1D8mJHeq4FhpMxqcTyW0Vpp5qkRloT9JbpjvB/rGmnx7P+oPkcpLVDJ9+KQctJCQjpBHC/IMh/g== root@blink
+
+# for preferences role
+git_user_name: Tenzin Lhakhang
+git_user_email: 2402007+tlhakhan@users.noreply.github.com
+...

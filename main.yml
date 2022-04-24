@@ -1,0 +1,14 @@
+#!/usr/bin/ansible-playbook
+---
+- name: Setup inventory
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars_files:
+    - vars.yaml
+
+  roles:
+    - name: security
+    - name: packages
+    - name: preferences

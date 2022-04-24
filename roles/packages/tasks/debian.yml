@@ -1,0 +1,8 @@
+---
+- name: Install packages
+  package:
+    name: '{{ package }}'
+    state: present
+  loop: '{{ debian_packages }}'
+  loop_control:
+    loop_var: package

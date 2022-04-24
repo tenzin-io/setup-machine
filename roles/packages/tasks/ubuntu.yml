@@ -1,0 +1,39 @@
+---
+- name: Install ubuntu-dbgsym-keyring
+  package:
+    name: ubuntu-dbgsym-keyring
+    state: present
+  notify: update apt cache
+
+- name: Install the debug repositories
+  shell: apt-add-repository "{{ source }}"
+  loop:
+    - deb http://ddebs.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse
+    - deb http://ddebs.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse
+    - deb http://ddebs.ubuntu.com/ $(lsb_release -cs)-proposed main restricted universe multiverse
+  loop_control:
+    loop_var: source
+  notify: update apt cache
+
+- name: Install Docker GPG key
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  notify: update apt cache
+
+- name: Add Docker repo
+  shell: apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 
+  notify: update apt cache
+
+- meta: flush_handlers
+
+- name: Install packages
+  package:
+    name: '{{ package }}'
+    state: present
+  loop: '{{ ubuntu_packages }}'
+  loop_control:
+    loop_var: package
+
+- name: Install kernel dbgsym debug package
+  package:
+    name: "linux-image-{{ ansible_facts['kernel'] }}-dbgsym"
+    state: present

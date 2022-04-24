@@ -1,0 +1,33 @@
+---
+- name: Assert required variables
+  assert:
+    that:
+      - ssh_public_key is defined
+    msg:  'The variable ssh_public_key was not defined.'
+
+- name: Generate random password
+  set_fact: 
+    random_password: "{{ lookup('password', '{{ playbook_dir }}/.generated_password chars=ascii_letters,digits length=15') }}"
+  no_log: yes
+
+- name: Update password for root user
+  user:
+    name: "{{ default_user }}"
+    password: "{{ random_password | password_hash('sha512') }}"
+
+- name: Update password for {{ default_user }} user
+  user:
+    name: root
+    password: "{{ random_password | password_hash('sha512') }}"
+
+- name: Update authorized_keys file of root user
+  authorized_key:
+    user: root
+    state: present
+    key: '{{ ssh_public_key }}'
+
+- name: Update authorized_keys file of {{ default_user }} user
+  authorized_key:
+    user: "{{ default_user }}"
+    state: present
+    key: '{{ ssh_public_key }}'
