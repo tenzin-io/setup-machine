@@ -1,14 +1,4 @@
 ---
-- name: Install the debug repositories
-  shell: apt-add-repository "{{ source }}"
-  loop:
-    - deb http://ddebs.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse
-    - deb http://ddebs.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse
-    - deb http://ddebs.ubuntu.com/ $(lsb_release -cs)-proposed main restricted universe multiverse
-  loop_control:
-    loop_var: source
-  notify: update apt cache
-
 - name: Install Docker GPG key
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   notify: update apt cache
