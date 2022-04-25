@@ -20,6 +20,11 @@
     name: root
     password: "{{ random_password | password_hash('sha512') }}"
 
+- name: Ensure that /root/.ssh exists and is a directory
+  file:
+    path: /root/.ssh
+    state: directory
+
 - name: Generate keypair for root user
   openssh_keypair:
     path: /root/.ssh/id_rsa
