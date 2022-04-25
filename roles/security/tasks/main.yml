@@ -10,15 +10,19 @@
     random_password: "{{ lookup('password', '{{ playbook_dir }}/.generated_password chars=ascii_letters,digits length=15') }}"
   no_log: yes
 
-- name: Update password for root user
+- name: Update password for {{ default_user }} user
   user:
     name: "{{ default_user }}"
     password: "{{ random_password | password_hash('sha512') }}"
 
-- name: Update password for {{ default_user }} user
+- name: Update password for root user
   user:
     name: root
     password: "{{ random_password | password_hash('sha512') }}"
+
+- name: Generate keypair for root user
+  openssh_keypair:
+    path: /root/.ssh/id_rsa
 
 - name: Update authorized_keys file of root user
   authorized_key:
